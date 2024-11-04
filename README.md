@@ -1,17 +1,19 @@
 <h1 align="center"> Local WordPress Docker Compose (WP Migrate) </h1>
 
-[![wordpress](https://img.shields.io/badge/Wordpress-21759B?style=for-the-badge&logo=wordpress&logoColor=white)](https://wordpress.org/)
-[![docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
-[![wordpress](https://img.shields.io/badge/Plugin-WP--Migrate-21759B?style=for-the-badge&logo=wordpress&logoColor=white)](https://wordpress.org/plugins/wp-migrate-db/)
-[![php](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
-[![apache2](https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=Apache&logoColor=white)](https://httpd.apache.org/)
-[![mysql](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
-![bash](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=shields)](http://makeapullrequest.com)
-
-Easily set up a local development environment that mirrors your existing WordPress site exported with the [wp migrate](https://wordpress.org/plugins/wp-migrate-db/) plugin using Docker and Docker Compose.
+<p align="center">
+    <a href="https://wordpress.org/"><img src="https://img.shields.io/badge/Wordpress-21759B?style=for-the-badge&logo=wordpress&logoColor=white"></a>
+    <a href="https://www.docker.com/"><img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white"></a>
+    <a href="https://wordpress.org/plugins/wp-migrate-db/"><img src="https://img.shields.io/badge/Plugin-WP--Migrate-21759B?style=for-the-badge&logo=wordpress&logoColor=white"></a>
+    <a href="https://www.php.net/"><img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white"></a>
+    <a href="https://httpd.apache.org/"><img src="https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=Apache&logoColor=white"></a>
+    <a href="https://www.mysql.com/"><img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white"></a>
+    <a href="#"><img src="https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white"></a>
+    <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge"></a>
+</p>
 
 Quick links: [Features](#features) &#124; [Installation](#installation) &#124; [Usage](#usage) &#124; [Contributing](#contributing) &#124; [Credits](#credits) &#124; [Roadmap](#roadmap)
+
+Easily set up a local development environment that mirrors your existing WordPress site exported with the [wp-migrate-db](https://wordpress.org/plugins/wp-migrate-db/) plugin using Docker and Docker Compose.
 
 ## Table of contents
 - [Prerequisites](#prerequisites)
