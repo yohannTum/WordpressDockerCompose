@@ -1,0 +1,79 @@
+services:
+  wordpress:
+    container_name: wordpress
+    depends_on:
+      db:
+        condition: service_healthy
+    build:
+      context: wordpress
+      dockerfile: Dockerfile
+      target: dev
+      args:
+        WORDPRESS_VERSION: $wp_version
+        PHP_VERSION: $php_version
+    volumes:
+      - ./wordpress/plugins/my-custom-plugin:/var/www/html/wp-content/plugins/my-custom-plugin
+    ports:
+      - ${wp_port:-80}:80
+    restart: always
+    environment:
+      WORDPRESS_HOST: ${wp_host-http://localhost}${wp_port:+:}${wp_port:-}
+      PRODUCTION_URL: $production_url
+      WORDPRESS_DB_HOST: ${db_host-db:3306}
+      WORDPRESS_DB_USER: ${db_user-wordpress}
+      WORDPRESS_DB_PASSWORD: ${db_password-password}
+      WORDPRESS_TABLE_PREFIX: $db_table_prefix
+      WORDPRESS_DEBUG: ${wp_debug_mode-1}
+      WORDPRESS_CONFIG_EXTRA:
+        define('WP_HOME','${wp_host-http://localhost}${wp_port:+:}${wp_port:-}');
+        define('WP_SITEURL','${wp_host-http://localhost}${wp_port:+:}${wp_port:-}');
+        define('PLL_CACHE_HOME_URL', false);
+        define('WP_HTTP_BLOCK_EXTERNAL', false );
+        define('WP_ALLOW_MULTISITE', true );
+        define('WP_ENVIRONMENT_TYPE', 'staging' );
+  db:
+    container_name: db
+    build:
+      context: db
+      dockerfile: Dockerfile
+      args:
+        - MYSQL_VERSION=$mysql_version
+    volumes:
+      - ./database:/var/lib/mysql
+      - ./db/.build/database.sql:/docker-entrypoint-initdb.d/database.sql
+    restart: always
+    ports: 
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: ${db_root_password-password}
+      MYSQL_DATABASE: ${db_name-wordpress}
+      MYSQL_USER: ${db_user-wordpress}
+      MYSQL_PASSWORD: ${db_password-password}
+      WORDPRESS_TABLE_PREFIX: $db_table_prefix
+      PRODUCTION_URL: $production_url
+    healthcheck:
+      test: ["CMD-SHELL", "docker-healthcheck.sh"]
+
+      interval: 10s
+      timeout: 10s
+      retries: 20
+      start_period: 20s
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - '8080:8080'
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8081:80'
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: password
